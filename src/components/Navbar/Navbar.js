@@ -16,6 +16,7 @@ import {
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import NextLink from "next/link";
+import { useSession } from "next-auth/react";
 
 const Links = [
   { index: 0, name: "Standings", menu: "standings" },
@@ -41,10 +42,11 @@ const NavLink = ({ children }) => (
 
 export default function Simple() {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const { data: session } = useSession();
 
   return (
     <>
-      <Box bg={useColorModeValue("gray.100", "gray.900")} px={4}>
+      <Box bg={useColorModeValue("gray.200", "gray.900")} px={4}>
         <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
           <IconButton
             size={"md"}
@@ -88,7 +90,11 @@ export default function Simple() {
                 cursor={"pointer"}
                 minW={0}
               >
-                <Avatar size={"sm"} src={"../images/test_profile.jpeg"} />
+                {session && session.user.image ? (
+                  <Avatar size={"sm"} src={session.user.image} />
+                ) : (
+                  <Avatar size={"sm"} />
+                )}
               </MenuButton>
             </Menu>
           </Flex>

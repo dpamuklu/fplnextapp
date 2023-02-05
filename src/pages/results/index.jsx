@@ -71,7 +71,7 @@ export async function getStaticProps(context) {
 
 export default function Results({ prevResults, gameweek }) {
   return (
-    <Box borderBottom="solid" borderTop="solid" borderRadius="lg">
+    <Box padding={"3"} borderBottom="solid" borderTop="solid" borderRadius="lg">
       <TableContainer whiteSpace={"break-spaces"}>
         <Heading size="l">
           <Center>Gameweek {gameweek}</Center>

@@ -6,9 +6,13 @@ import {
   Tr,
   Th,
   Td,
-  TableCaption,
   TableContainer,
+  Center,
+  Heading,
+  Box,
+  Text,
 } from "@chakra-ui/react";
+import { useSession } from "next-auth/react";
 
 export async function getStaticProps(context) {
   const resData = await fetch("https://patagonya-fplb-ackend.vercel.app");
@@ -59,32 +63,43 @@ export default function Standings({
 
   const columns = ["Rank", "Team", "W", "D", "L", "Score", "Pts", "Reward(TL)"];
 
+  const { data: session } = useSession();
+
   return (
-    <TableContainer whiteSpace={"break-spaces"}>
-      <Table variant="sample" size={{ base: "sm", md: "md" }}>
-        <TableCaption>{name}</TableCaption>
-        <Thead>
-          <Tr>
-            {columns.map((column) => (
-              <Th>{column}</Th>
-            ))}
-          </Tr>
-        </Thead>
-        <Tbody>
-          {standings.map((team) => (
-            <Tr bg={setColor(team.rank)} key={team.id}>
-              <Td>{team.rank}</Td>
-              <Td>{getName(team.league_entry)}</Td>
-              <Td>{team.matches_won}</Td>
-              <Td>{team.matches_drawn}</Td>
-              <Td>{team.matches_lost}</Td>
-              <Td>{team.points_for}</Td>
-              <Td>{team.total}</Td>
-              <Td>{setAmountbyRank(team.rank)}</Td>
+    <Box padding={"3"}>
+      <TableContainer whiteSpace={"break-spaces"}>
+        <Heading size="l">
+          <Center>{name}</Center>
+        </Heading>
+        <Table variant="sample" size={{ base: "sm", md: "md" }}>
+          <Thead>
+            <Tr key={"1"}>
+              {columns.map((column) => (
+                <Th>{column}</Th>
+              ))}
             </Tr>
-          ))}
-        </Tbody>
-      </Table>
-    </TableContainer>
+          </Thead>
+          <Tbody>
+            {standings.map((team) => (
+              <Tr
+                borderBottom="1px"
+                borderColor="gray.300"
+                bg={setColor(team.rank)}
+                key={team.id}
+              >
+                <Td>{team.rank}</Td>
+                <Td>{getName(team.league_entry)}</Td>
+                <Td>{team.matches_won}</Td>
+                <Td>{team.matches_drawn}</Td>
+                <Td>{team.matches_lost}</Td>
+                <Td>{team.points_for}</Td>
+                <Td>{team.total}</Td>
+                <Td>{setAmountbyRank(team.rank)}</Td>
+              </Tr>
+            ))}
+          </Tbody>
+        </Table>
+      </TableContainer>
+    </Box>
   );
 }
