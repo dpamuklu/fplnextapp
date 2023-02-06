@@ -69,7 +69,7 @@ export default function Login() {
               {/* Google */}
               <Button
                 onClick={() =>
-                  signIn("google", { callbackUrl: "http://localhost:3000/" })
+                  signIn("google", { callbackUrl: process.env.NEXTAUTH_URL })
                 }
                 w={"full"}
                 variant={"outline"}
