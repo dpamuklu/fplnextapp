@@ -13,10 +13,14 @@ import {
   Stack,
   Image,
   Heading,
+  MenuList,
+  MenuItem,
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import NextLink from "next/link";
-import { useSession } from "next-auth/react";
+import { useSession, signOut } from "next-auth/react";
+import { useRouter } from "next/router";
+import Head from "next/head";
 
 const Links = [
   { index: 0, name: "Standings", menu: "standings" },
@@ -43,9 +47,23 @@ const NavLink = ({ children }) => (
 export default function Simple() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { data: session } = useSession();
+  const router = useRouter();
+
+  const logout = () => {
+    signOut();
+    router.push("/");
+  };
+
+  const login = () => {
+    router.push("/login");
+  };
 
   return (
     <>
+      <Head>
+        <title>Patagonya FPL</title>
+        <link rel="icon" href="../images/pl_logo.ico" />
+      </Head>
       <Box bg={useColorModeValue("gray.200", "gray.900")} px={4}>
         <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
           <IconButton
@@ -96,6 +114,13 @@ export default function Simple() {
                   <Avatar size={"sm"} />
                 )}
               </MenuButton>
+              <MenuList>
+                {session ? (
+                  <MenuItem onClick={logout}>Logout</MenuItem>
+                ) : (
+                  <MenuItem onClick={login}>Login</MenuItem>
+                )}
+              </MenuList>
             </Menu>
           </Flex>
         </Flex>
@@ -104,7 +129,7 @@ export default function Simple() {
           <Box pb={4} display={{ md: "none" }}>
             <Stack as={"nav"} spacing={4}>
               {Links.map((link) => (
-                <NavLink key={link}>{link}</NavLink>
+                <NavLink key={link.index}>{link}</NavLink>
               ))}
             </Stack>
           </Box>

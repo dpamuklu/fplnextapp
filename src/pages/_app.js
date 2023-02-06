@@ -1,4 +1,4 @@
-import Layout from "@/components/Layout/Layout";
+import Layout from "../components/Layout/Layout";
 import { ChakraProvider } from "@chakra-ui/react";
 import { SessionProvider } from "next-auth/react";
 import { extendTheme } from "@chakra-ui/react";

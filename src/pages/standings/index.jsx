@@ -10,9 +10,7 @@ import {
   Center,
   Heading,
   Box,
-  Text,
 } from "@chakra-ui/react";
-import { useSession } from "next-auth/react";
 
 export async function getStaticProps(context) {
   const resData = await fetch("https://patagonya-fplb-ackend.vercel.app");
@@ -63,8 +61,6 @@ export default function Standings({
 
   const columns = ["Rank", "Team", "W", "D", "L", "Score", "Pts", "Reward(TL)"];
 
-  const { data: session } = useSession();
-
   return (
     <Box padding={"3"}>
       <TableContainer whiteSpace={"break-spaces"}>
@@ -73,19 +69,19 @@ export default function Standings({
         </Heading>
         <Table variant="sample" size={{ base: "sm", md: "md" }}>
           <Thead>
-            <Tr key={"1"}>
+            <Tr>
               {columns.map((column) => (
                 <Th>{column}</Th>
               ))}
             </Tr>
           </Thead>
           <Tbody>
-            {standings.map((team) => (
+            {standings.map((team, index) => (
               <Tr
                 borderBottom="1px"
                 borderColor="gray.300"
                 bg={setColor(team.rank)}
-                key={team.id}
+                key={index}
               >
                 <Td>{team.rank}</Td>
                 <Td>{getName(team.league_entry)}</Td>

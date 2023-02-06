@@ -13,7 +13,7 @@ import {
   useColorModeValue,
   Center,
 } from "@chakra-ui/react";
-import { useSession, signIn, signOut } from "next-auth/react";
+import { useSession, signIn } from "next-auth/react";
 
 import { FcGoogle } from "react-icons/fc";
 
