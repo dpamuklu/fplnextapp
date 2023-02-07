@@ -82,6 +82,7 @@ export default function Simple() {
                     height={"5"}
                     rounded={"lg"}
                     src="../images/pl_logo.png"
+                    alt="logo"
                   ></Image>
                 </Box>
               </Link>

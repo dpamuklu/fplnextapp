@@ -80,7 +80,7 @@ export default function Login() {
                 </Center>
               </Button>
               <Text align="center">
-                Don't have an account?
+                Dont have an account?
                 <Link href="/signup"> Sign Up</Link>
               </Text>
             </Stack>

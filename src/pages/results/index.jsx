@@ -78,8 +78,8 @@ export default function Results({ prevResults, gameweek }) {
         </Heading>
         <Table variant="striped" size={{ base: "sm", md: "md" }}>
           <Tbody>
-            {prevResults.map((line) => (
-              <Tr>
+            {prevResults.map((line, index) => (
+              <Tr key={index}>
                 <Td>
                   <Text align={"center"}>
                     {line.score1 > line.score2 ? (

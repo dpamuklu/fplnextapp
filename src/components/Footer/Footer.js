@@ -54,6 +54,7 @@ export default function SmallWithLogoLeft() {
           height={"5"}
           rounded={"lg"}
           src="../images/pl_logo.png"
+          alt="logo"
         ></Image>
 
         <Text>© 2023 Patagonya FPL. All rights reserved</Text>

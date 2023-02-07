@@ -24,6 +24,7 @@ export async function getStaticProps(context) {
   const league_entries = data.league_entries;
   return {
     props: { standings, name, league_entries, trlPrice },
+    revalidate: 10,
   };
 }
 
@@ -70,8 +71,8 @@ export default function Standings({
         <Table variant="sample" size={{ base: "sm", md: "md" }}>
           <Thead>
             <Tr>
-              {columns.map((column) => (
-                <Th>{column}</Th>
+              {columns.map((column, index) => (
+                <Th key={index}>{column}</Th>
               ))}
             </Tr>
           </Thead>
