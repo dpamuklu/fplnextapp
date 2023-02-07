@@ -57,7 +57,7 @@ export default function SmallWithLogoLeft() {
           alt="logo"
         ></Image>
 
-        <Text>© 2023 Patagonya FPL. All rights reserved</Text>
+        <Text>© 2023 Patagonya FPL. All rights reserved.</Text>
         <Stack direction={"row"} spacing={6}>
           <SocialButton
             label={"Twitter"}
